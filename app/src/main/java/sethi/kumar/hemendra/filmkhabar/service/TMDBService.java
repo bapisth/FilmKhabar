@@ -7,6 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
+import sethi.kumar.hemendra.filmkhabar.model.Credits;
 import sethi.kumar.hemendra.filmkhabar.model.Movies;
 import sethi.kumar.hemendra.filmkhabar.model.TopRatedMovies;
 import sethi.kumar.hemendra.filmkhabar.model.UpcomingMovies;
@@ -29,4 +30,7 @@ public interface TMDBService {
 
     @GET("latest?"+API_KEY)
     Observable<TopRatedMovies> getLatestMovies(@Query("page") int pageNum);
+
+    @GET("{movieId}/credits")
+    Observable<Credits> getCredits(@Path("movieId") int movieId);
 }

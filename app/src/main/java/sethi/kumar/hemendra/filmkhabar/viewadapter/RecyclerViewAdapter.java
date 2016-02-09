@@ -52,6 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         MovieListViewHolder movieListViewHolder = (MovieListViewHolder) holder;
         Movies movies = (Movies) movieList.get(position);
         movieListViewHolder.getTitle().setText(movies.getOriginal_title().toString());
+        movieListViewHolder.getHiddenId().setText(movies.getId().toString());
         uri = Uri.parse(MovieUtility.IMG_URL+movies.getPoster_path());
 
         Log.d(TAG, "onBindViewHolder: URI : " + uri.toString());

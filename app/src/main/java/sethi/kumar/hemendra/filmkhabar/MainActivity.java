@@ -1,11 +1,14 @@
 package sethi.kumar.hemendra.filmkhabar;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
 import java.util.Random;
@@ -13,6 +16,8 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import sethi.kumar.hemendra.filmkhabar.activities.CreditDetailActivity;
+import sethi.kumar.hemendra.filmkhabar.listener.RecyclerItemClickListener;
 import sethi.kumar.hemendra.filmkhabar.model.Movies;
 import sethi.kumar.hemendra.filmkhabar.model.UpcomingMovies;
 import sethi.kumar.hemendra.filmkhabar.service.ServiceFactory;
@@ -60,6 +65,23 @@ public class MainActivity extends AppCompatActivity {
                         recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, moviesList);
                         movieRecylerView.setLayoutManager(layoutManager);
                         movieRecylerView.setAdapter(recyclerViewAdapter);
+                        movieRecylerView.addOnItemTouchListener(new RecyclerItemClickListener(MainActivity.this, new RecyclerItemClickListener.OnListItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Toast.makeText(MainActivity.this, "Item Clicked", Toast.LENGTH_SHORT).show();
+                                TextView movieId = (TextView) view.findViewById(R.id.movieId);
+                                int id = Integer.parseInt(movieId.getText().toString());
+                                Toast.makeText(MainActivity.this, "Item Clicked Movie Id="+id, Toast.LENGTH_SHORT).show();
+                                Intent creditDetailIntent = new Intent(MainActivity.this, CreditDetailActivity.class);
+                                creditDetailIntent.putExtra("movieId", id);
+                                startActivity(creditDetailIntent);
+                            }
+
+                            @Override
+                            public void onItemLongClick(View view, int position) {
+
+                            }
+                        },movieRecylerView ));
                     }
 
                     @Override

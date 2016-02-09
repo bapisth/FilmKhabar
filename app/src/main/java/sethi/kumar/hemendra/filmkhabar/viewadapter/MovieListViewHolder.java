@@ -13,10 +13,13 @@ import sethi.kumar.hemendra.filmkhabar.R;
 public class MovieListViewHolder extends RecyclerView.ViewHolder {
     private ImageView moviePoster;
     private TextView title;
+    private TextView hiddenId;
+
     public MovieListViewHolder(View itemView) {
         super(itemView);
         moviePoster = (ImageView) itemView.findViewById(R.id.movie_poster);
         title = (TextView) itemView.findViewById(R.id.movie_title);
+        hiddenId = (TextView) itemView.findViewById(R.id.movieId);
     }
 
     public ImageView getMoviePoster() {
@@ -33,5 +36,13 @@ public class MovieListViewHolder extends RecyclerView.ViewHolder {
 
     public void setTitle(TextView title) {
         this.title = title;
+    }
+
+    public TextView getHiddenId() {
+        return hiddenId;
+    }
+
+    public void setHiddenId(TextView hiddenId) {
+        this.hiddenId = hiddenId;
     }
 }
